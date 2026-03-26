@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Book Library</title>
+
+  <!-- Materialize -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav>
+  <div class="nav-wrapper teal">
+    <a href="#" class="brand-logo center">📚 Book Library</a>
+  </div>
+</nav>
+
+<div class="welcome-section">
+  <div class="container">
+    <h3>Welcome to SIT 725 Week 3</h3>
+    <p>
+      This is a demo application that tries to use a few components from Materialize 
+      and through this practical we try to have some fun Materialize and its components.
+    </p>
+
+    <img src="images/banner.png" alt="banner" class="welcome-img">
+
+    <a class="btn welcome-btn" id="clickBtn">Click Me</a>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="container">
+  <h4 class="center-align">Books</h4>
+
+  <!-- Cards will load here -->
+  <div class="row" id="card-section"></div>
+
+  <!-- Add Book Button -->
+  <div class="center-align">
+    <a class="btn modal-trigger" href="#modal1">Add Book</a>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h5>Add Book</h5>
+
+    <input id="book_title" placeholder="Title">
+    <input id="book_author" placeholder="Author">
+    <input id="book_genre" placeholder="Genre">
+    <input id="book_description" placeholder="Description">
+  </div>
+
+  <div class="modal-footer">
+    <a href="#!" class="modal-close btn" id="formSubmit">Submit</a>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="js/scripts.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+nav {
+  background-color: #00796B;
+}
+
+.navbar-size {
+  width: 95%;
+  margin: 0 auto;
+}
+
+nav .brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.4rem;
+}
+
+.nav-title {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.main-body {
+  background-color: #E0F2F1;
+  min-height: calc(100vh - 64px);
+  padding: 30px 0;
+}
+
+#heading {
+  color: #00796B;
+  font-weight: bold;
+}
+
+.flow-text {
+  color: #333;
+}
+
+.add-book-btn {
+  background-color: #00796B;
+  margin-bottom: 30px;
+}
+
+/* Welcome Section */
+.welcome-section {
+  background-color: #e57373; /* same as your screenshot */
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.welcome-section h3 {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.welcome-section p {
+  max-width: 700px;
+  margin: 0 auto 20px;
+}
+
+.welcome-img {
+  max-width: 280px;
+  margin: 20px auto;
+  display: block;
+}
+
+.welcome-btn {
+  background-color: white;
+  color: #e57373;
+  font-weight: bold;
+}
+
+/* Force equal height columns */
+#card-section {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Each column behaves like flex item */
+#card-section .col {
+  display: flex;
+}
+
+/* Card takes full height */
+#card-section .card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Image fixed height */
+.card-image img {
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Content expands evenly */
+.card-content {
+  flex-grow: 1;
+}
+
+/* Reveal section scroll if long */
+.card-reveal {
+  overflow-y: auto;
+}
