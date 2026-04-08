@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Books Catalogue</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    h1 { color: #333; }
+    button {
+      background: #333;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    button:hover { background: #555; }
+    #booksList { margin-top: 16px; }
+    #booksList p {
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+      cursor: pointer;
+      margin: 0;
+    }
+    #booksList p:hover { background: #f5f5f5; }
+    #bookDetail {
+      margin-top: 24px;
+      border: 1px solid #ddd;
+      padding: 16px;
+      border-radius: 6px;
+      display: none;
+    }
+    #bookDetail p { margin: 6px 0; }
+    .label { font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <h1>Books Catalogue developed by s225779522</h1>
+  <p>Click the button below to get all books from the server:</p>
+  <button id="getAllBooksBtn">Get all books</button>
+
+  <div id="booksList"></div>
+
+  <div id="bookDetail">
+    <p><span class="label">Title:</span> <span id="dTitle"></span></p>
+    <p><span class="label">Author:</span> <span id="dAuthor"></span></p>
+    <p><span class="label">Year:</span> <span id="dYear"></span></p>
+    <p><span class="label">Genre:</span> <span id="dGenre"></span></p>
+    <p><span class="label">Summary:</span> <span id="dSummary"></span></p>
+    <p><span class="label">Price (AUD):</span> <span id="dPrice"></span></p>
+  </div>
+
+  <script>
+    const btn = document.getElementById('getAllBooksBtn');
+    const out = document.getElementById('booksList');
+    const bookDetail = document.getElementById('bookDetail');
+
+    function render(items) {
+      out.innerHTML = '';
+      if (!Array.isArray(items) || items.length === 0) {
+        out.textContent = 'No items.';
+        return;
+      }
+      for (const it of items) {
+        const p = document.createElement('p');
+        p.textContent = `${it.title} ${it.price} AUD`;
+        p.addEventListener('click', () => showDetail(it.id));
+        out.appendChild(p);
+      }
+    }
+
+    btn.addEventListener('click', async () => {
+      out.textContent = 'Loading...';
+      bookDetail.style.display = 'none';
+      try {
+        const res = await fetch('/api/books');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const body = await res.json();
+        render(body.data);
+      } catch (err) {
+        console.error('Error fetching books:', err);
+        out.textContent = 'Error fetching books.';
+      }
+    });
+
+    async function showDetail(id) {
+      bookDetail.style.display = 'none';
+      try {
+        const res = await fetch(`/api/books/${id}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const body = await res.json();
+        const b = body.data;
+
+        document.getElementById('dTitle').textContent = b.title;
+        document.getElementById('dAuthor').textContent = b.author;
+        document.getElementById('dYear').textContent = b.year;
+        document.getElementById('dGenre').textContent = b.genre;
+        document.getElementById('dSummary').textContent = b.summary;
+        document.getElementById('dPrice').textContent = b.price;
+        bookDetail.style.display = 'block';
+      } catch (err) {
+        console.error('Error fetching book detail:', err);
+      }
+    }
+  </script>
+
+</body>
+</html>
