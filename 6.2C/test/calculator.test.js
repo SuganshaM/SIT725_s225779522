@@ -5,7 +5,6 @@ const { app, add } = require('../server');
 const baseUrl = 'http://localhost:3000';
 let server;
 
-// Start server before tests, close after
 before(function (done) {
   server = app.listen(3000, done);
 });
@@ -14,7 +13,7 @@ after(function (done) {
   server.close(done);
 });
 
-// --- REST API Tests ---
+
 describe('Sum Calculator API', function () {
 
   it('returns status 200 to check if API works', function (done) {
@@ -49,7 +48,6 @@ describe('Sum Calculator API', function () {
 
 });
 
-// --- Calculation Function Tests ---
 describe('Calculation Functions', function () {
 
   it('add() should correctly add two positive numbers', function () {
