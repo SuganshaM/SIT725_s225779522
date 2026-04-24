@@ -5,6 +5,7 @@ const { app, add } = require('../server');
 const baseUrl = 'http://localhost:3000';
 let server;
 
+// Start server before tests, close after
 before(function (done) {
   server = app.listen(3000, done);
 });
@@ -13,7 +14,7 @@ after(function (done) {
   server.close(done);
 });
 
-
+// --- REST API Tests ---
 describe('Sum Calculator API', function () {
 
   it('returns status 200 to check if API works', function (done) {
@@ -48,6 +49,7 @@ describe('Sum Calculator API', function () {
 
 });
 
+// --- Calculation Function Tests ---
 describe('Calculation Functions', function () {
 
   it('add() should correctly add two positive numbers', function () {
@@ -58,6 +60,16 @@ describe('Calculation Functions', function () {
   it('add() should handle negative numbers', function () {
     const result = add(-5, 3);
     expect(result).to.equal(-2);
+  });
+
+  it('add() should handle zero as an edge case', function () {
+    const result = add(0, 0);
+    expect(result).to.equal(0);
+  });
+
+  it('add() should handle decimal numbers', function () {
+    const result = add(1.5, 2.5);
+    expect(result).to.equal(4);
   });
 
 });
